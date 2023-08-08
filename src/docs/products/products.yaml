@@ -1,0 +1,202 @@
+paths:
+  /api/products/:
+    get:
+      summary: Gets all products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Todo ok"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/products'
+        "400":
+          description: "Algo salió mal"
+        "500":
+          description: "Error interno del servidor"
+    post:
+      summary: Creates a product
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/UpdateProduct'
+      responses:
+        "200":
+          description: "Todo ok"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/products'
+        "400":
+          description: "Algo salió mal"
+        "500":
+          description: "Error interno del servidor"
+  /api/products/{pid}:
+    get:
+      summary: Gets a product by product id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: El pid es el product id interno que asigna la base de datos (el _id)
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: "Todo ok"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "400":
+          description: "Algo salió mal"
+        "500":
+          description: "Error interno del servidor"
+    put:
+      summary: Updates a product by produc id
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: El pid es el product id interno que asigna la base de datos (el _id)
+        schema:
+          $type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/UpdateProduct'
+      responses:
+        "200":
+          description: "Todo ok"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "400":
+          description: "Algo salió mal"
+        "500":
+          description: "Error interno del servidor"
+    delete:
+      summary: Deletes a product by product id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: El pid es el product id interno que asigna la base de datos (el _id)
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: "Todo ok"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "400":
+          description: "Algo salió mal"
+        "500":
+          description: "Error interno del servidor"
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id de producto. Autogenerado por la base de datos
+        title: 
+          type: String
+          description: Título del producto
+        descripcion:
+          type: String
+          description: Descripción del producto
+        code: 
+          type: String
+          description: Código de producto. Generado a la hora de crear el producto
+        price:
+          type: Number
+          description: Precio unitario del producto
+        status: 
+          type: Boolean
+          description: Indica si el producto está activo
+        stock:
+          type: Number
+          description: Stock disponible del producto
+        category:
+          type: String
+          description: Categoría del producto
+        thumbnails:
+          type: Array
+          description: Imágenes del producto
+        owner:
+          type: String
+          description: Usuario creador del producto
+      example:
+        _id: ObjectId('645ae40952e2c6718d5a0308')
+        title: Joker Van Gogh
+        description: Hand designed, laser cut, non classic shape, wooden puzzle
+        code: 61e76d4e-5a9d-4279-93fd-4034abcce2e3
+        price: 6500
+        status: true
+        stock: 10
+        category: Wooden Puzzle
+        thumbnails: []
+        owner: admin@mail.com
+  requestBodies:
+    UpdateProduct:
+      type: object
+      properties:
+        title: 
+          type: String
+          description: Título del producto
+        descripcion:
+          type: String
+          description: Descripción del producto
+        code: 
+          type: String
+          description: Código de producto. Generado a la hora de crear el producto
+        price:
+          type: Number
+          description: Precio unitario del producto
+        status: 
+          type: Boolean
+          description: Indica si el producto está activo
+        stock:
+          type: Number
+          description: Stock disponible del producto
+        category:
+          type: String
+          description: Categoría del producto
+        thumbnails:
+          type: Array
+          description: Imágenes del producto
+        owner:
+          type: String
+          description: Usuario creador del producto
+      example:
+        title: Updated Title
+        description: Updated Description
+        code: Updated Code
+        price: Updated Price
+        status: Updated Status
+        stock: Updated Stock
+        category: Updated Category
+        thumbnails: Images Links Array
+        owner: Different Owner
