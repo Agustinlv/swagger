@@ -11,6 +11,7 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
       responses:
         "200":
           description: "Success"
@@ -31,6 +32,7 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
       requestBody:
         required: true
         content:
@@ -53,6 +55,7 @@ paths:
         description: The cid is the interal id the database assigns to the carts (_id)
         schema:
           $type: string
+          example: 64ad97d5b5613fbbb51534ee
       responses:
         "200":
           description: "Success"
@@ -70,6 +73,7 @@ paths:
           description: The uid is the interal id the database assigns to the users (_id)
           schema:
             $type: string
+            example: 64ad90ea645d4d82d2d606ba
       responses:
         "200":
           description: "Success"
@@ -91,12 +95,14 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
         - name: pid
           in: path
           required: true
           description: The pid is the interal id the database assigns to the products (_id)
           schema:
             $type: string
+            example: 645ae40952e2c6718d5a0308
       responses:
         "200":
           description: "Success"
@@ -113,12 +119,14 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
         - name: pid
           in: path
           required: true
           description: The pid is the interal id the database assigns to the products (_id)
           schema:
             $type: string
+            example: 645ae40952e2c6718d5a0308
       requestBody:
         required: true
         content:
@@ -141,12 +149,14 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
         - name: pid
           in: path
           required: true
           description: The pid is the interal id the database assigns to the products (_id)
           schema:
             $type: string
+            example: 645ae40952e2c6718d5a0308
       responses:
         "200":
           description: "Success"
@@ -164,6 +174,7 @@ paths:
           description: The cid is the interal id the database assigns to the carts (_id)
           schema:
             $type: string
+            example: 64ad97d5b5613fbbb51534ee
       responses:
         "200":
           description: "Success"
@@ -234,7 +245,7 @@ components:
         type: object
         properties:
           products:
-            type: object
+            type: array
             items:
               $ref: '#components/schemas/CartProducts'
       UpdateQuantity:
@@ -242,6 +253,5 @@ components:
         properties:
           quantity: 
             type: number
-            description: New quantity to update the current quantity of the product
         example:
           quantity: 4

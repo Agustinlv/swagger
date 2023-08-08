@@ -15,11 +15,11 @@ export class ProductMongo{
     async getProducts(query){
 
         customLogger.debug(`${new Date().toLocaleDateString()}: ${query}`);
-    
+
         const {limit = 10, page = 1, category, available, sort} = query;
-        
+
         let paginateQuery = {};
-    
+
         if (category) {
 
             if (available) {
@@ -33,9 +33,9 @@ export class ProductMongo{
             };
 
         };
-        
+
         try {
-            
+
             const {docs, hasPrevPage, hasNextPage, prevPage, nextPage, totalPages} = await this.model.paginate(
                 paginateQuery,
                 {
@@ -45,15 +45,15 @@ export class ProductMongo{
                     lean: true
                 }
             );
-        
+
             const payload = docs;
-            
+
             const prevLink = hasPrevPage === false ? null : `/products?page=${prevPage}`;
-        
+
             const nextLink = hasNextPage === false ? null : `/products?page=${nextPage}`;
-        
+
             return{
-                code: 202,
+                code: 200,
                 status: "Succcess",
                 payload: payload,
                 totalPages: totalPages,
@@ -77,11 +77,11 @@ export class ProductMongo{
             };
 
         };
-    
+
     };
-    
+
     async getProductByID(pid){
-        
+
         try {
 
             customLogger.debug(`${new Date().toLocaleDateString()}: ${pid}`);
@@ -89,7 +89,7 @@ export class ProductMongo{
             const product = await this.model.findById(pid);
 
             return{
-                code: 202,
+                code: 200,
                 status: 'Success',
                 message: product
             };
@@ -105,11 +105,11 @@ export class ProductMongo{
             };
 
         };
-    
+
     };
-    
+
     async addProduct(email, product){
-        
+
         try {
 
             product.owner = email;
@@ -121,7 +121,7 @@ export class ProductMongo{
             await this.model.create(product);
 
             return{
-                code: 202,
+                code: 200,
                 status: 'Success',
                 message: `El producto ${product.title} ha sido agregado con éxito.`
             };
@@ -135,16 +135,16 @@ export class ProductMongo{
                 status: 'Error',
                 message: error.message
             };
-    
+
         };
-    
+
     };
-    
+
     async updateProduct(pid, updatedProduct){
 
         //Si el producto no existe, no hay nada para actualizar
         try {
-            
+
             customLogger.debug(`Date: ${new Date().toLocaleDateString()} - File: ${filename} - Message: ${{pid: pid, updatedProduct: updatedProduct}}`);
 
             const productFound = await this.model.findById(pid);
@@ -155,7 +155,7 @@ export class ProductMongo{
             await productModel.findByIdAndUpdate(pid, updatedProduct);
 
             return{
-                code: 202,
+                code: 200,
                 status: 'Success',
                 message: `El producto ${pid} ha sido actualizado con éxito`
             };
@@ -179,11 +179,11 @@ export class ProductMongo{
         try {
 
             customLogger.debug(`${new Date().toLocaleDateString()}: ${pid}`);
-            
+
             await this.model.findByIdAndDelete(pid);
 
             return{
-                code: 202,
+                code: 200,
                 status: 'Success',
                 message: `El producto con ID ${pid} ha sido elminado exitosamente`
             };

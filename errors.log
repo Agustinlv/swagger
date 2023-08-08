@@ -18,3 +18,5 @@
 {"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
 {"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
 {"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
+{"level":"error","message":"8/8/2023: products.forEach is not a function"}
+{"level":"error","message":"8/8/2023: products.forEach is not a function"}

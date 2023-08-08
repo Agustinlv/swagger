@@ -66,7 +66,7 @@ export const getCart = async (req, res) => {
 
 export const replaceCart = async (req, res) => {
 
-    const response = await cartDao.replaceCart(req.params.cid, req.body);
+    const response = await cartDao.replaceCart(req.params.cid, req.body.products);
 
     return res.status(response.code).send({
         status: response.status,

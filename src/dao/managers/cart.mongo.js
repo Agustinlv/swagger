@@ -188,7 +188,7 @@ export class CartMongo{
             await this.cartModel.findByIdAndUpdate(cid, {products: products});
 
             return {
-                code: 202,
+                code: 200,
                 status: 'Success',
                 message: `El cart con ID ${cid} ha sido actualizado exitosamente`
             };
